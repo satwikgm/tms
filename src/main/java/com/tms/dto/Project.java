@@ -12,7 +12,7 @@ import org.bson.types.ObjectId;
 @NoArgsConstructor
 @AllArgsConstructor
 @Introspected
-public class Task {
+public class Project {
 
     private ObjectId id;
     private String name;
