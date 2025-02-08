@@ -1,0 +1,9 @@
+micronaut:
+  application:
+    name: tms
+  server:
+    port: 8085
+netty:
+  default:
+    allocator:
+      max-order: 3
