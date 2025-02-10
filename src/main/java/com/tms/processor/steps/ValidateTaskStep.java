@@ -20,5 +20,10 @@ public class ValidateTaskStep implements CommandStep<Task> {
             context.setErrorMessage("Task name is required");
             log.error("Validation failed: {}", context.getErrorMessage());
         }
+        if (task.getProjectId() == null || task.getProjectId().isBlank()) {
+            context.setValid(false);
+            context.setErrorMessage("Project Id is required");
+            log.error("Validation failed: {}", context.getErrorMessage());
+        }
     }
 }
