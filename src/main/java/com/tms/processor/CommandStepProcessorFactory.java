@@ -1,10 +1,7 @@
 package com.tms.processor;
 
 import com.tms.dto.Task;
-import com.tms.processor.steps.AssignTaskStep;
-import com.tms.processor.steps.SaveTaskStep;
-import com.tms.processor.steps.ValidateProjectExistsStep;
-import com.tms.processor.steps.ValidateTaskStep;
+import com.tms.processor.steps.*;
 import jakarta.inject.Singleton;
 import lombok.RequiredArgsConstructor;
 
@@ -20,6 +17,7 @@ public class CommandStepProcessorFactory {
     private final AssignTaskStep assignTaskStep;
     private final SaveTaskStep saveTaskStep;
     private final ValidateProjectExistsStep validateProjectExistsStep;
+    private final UpdateTaskStatusStep updateTaskStatusStep;
 
     public CommandStepProcessor<Task> createTaskProcessor() {
         return new CommandStepProcessor<>(
@@ -27,5 +25,11 @@ public class CommandStepProcessorFactory {
                         validateProjectExistsStep,
                         assignTaskStep,
                         saveTaskStep));
+    }
+
+    public CommandStepProcessor<Task> updateTaskProcessor() {
+        return new CommandStepProcessor<>(
+                List.of(updateTaskStatusStep)
+        );
     }
 }

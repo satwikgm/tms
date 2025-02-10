@@ -6,6 +6,7 @@ import com.tms.processor.CommandStepProcessorFactory;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Post;
+import io.micronaut.http.annotation.Put;
 import lombok.RequiredArgsConstructor;
 
 @Controller("/task")
@@ -25,5 +26,18 @@ public class TaskController {
         }
 
         return "Task created successfully";
+    }
+
+    @Put("/updateStatus")
+    public String updateTaskStatus(@Body Task task) {
+
+        CommandStepContext<Task> context = new CommandStepContext<>(task);
+        commandStepProcessorFactory.updateTaskProcessor().process(context);
+
+        if (!context.isValid()) {
+            return "Task update failed: "+ context.getErrorMessage();
+        }
+
+        return "Task update successfully";
     }
 }
