@@ -8,6 +8,8 @@ import jakarta.inject.Singleton;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Random;
+
 @Singleton
 @Slf4j
 @RequiredArgsConstructor
@@ -17,9 +19,11 @@ public class SaveTaskStep implements CommandStep<Task> {
 
     @Override
     public void process(CommandStepContext<Task> context) {
+        Task task = context.getData();
         if (context.isValid()) {
-            taskRepository.saveTask(context.getData()).subscribe(task -> {
-                log.info("Task saved successfully: {}", task);
+            task.setId("TSC-"+new Random().nextInt(1000));
+            taskRepository.saveTask(task).subscribe(t -> {
+                log.info("Task saved successfully: {}", t);
             });
         } else {
             log.error("Skipping task, task is invalid");

@@ -14,7 +14,7 @@ import org.bson.types.ObjectId;
 @Introspected
 public class Task {
 
-    private ObjectId id;
+    private String id;
     private String name;
     private String description;
     private String projectId;
