@@ -14,10 +14,10 @@ import org.bson.types.ObjectId;
 @Introspected
 public class Project {
 
-    private ObjectId id;
+    private String id;
     private String name;
     private String description;
-    private String projectId;
+    private String parentProjectId;
     private String status;
     private String assignedTo;
 }
