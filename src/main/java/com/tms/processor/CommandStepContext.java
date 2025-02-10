@@ -3,16 +3,14 @@ package com.tms.processor;
 import lombok.Getter;
 import lombok.Setter;
 
+// The Context holds the object being processed(e.g. Task)
+// and also holds the validation state
+@Setter
+@Getter
 public class CommandStepContext<T> {
 
-    @Getter
-    @Setter
     private T data;
-    @Setter
-    @Getter
     private boolean isValid = true;
-    @Setter
-    @Getter
     private String errorMessage;
 
     public CommandStepContext(T data) {

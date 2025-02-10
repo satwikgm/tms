@@ -6,6 +6,8 @@ import com.tms.processor.CommandStepContext;
 import jakarta.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
 
+// Individual Step (1st in the Order)
+// Each of these steps modifies Task or stops processing if something is invalid
 @Singleton
 @Slf4j
 public class ValidateTaskStep implements CommandStep<Task> {

@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import javax.naming.Context;
 import java.util.List;
 
+// This processor executes each step sequentially
 @Singleton
 @RequiredArgsConstructor
 public class CommandStepProcessor<Context> {
@@ -16,7 +17,7 @@ public class CommandStepProcessor<Context> {
         for (CommandStep<Context> step : commandSteps) {
             step.process(context);
             if(!context.isValid()) {
-                break;
+                break;  // Stop execution if a step fails
             }
         }
     }
